@@ -1,5 +1,7 @@
-import { hydrateData, mergeData } from '../../src';
-import { BoardConfig } from '../options/boardOptionsTest';
+import { hydrateData } from '../../src';
+import { BlockConfig, BoardConfig } from '../options/boardOptionsTest';
+
+test.skip('skip', () => {});
 
 const migrations1: { [key: string]: (model: BoardConfig) => void } = {
   '1': () => {
@@ -54,11 +56,7 @@ const migrations4: { [key: string]: (model: BoardConfig) => void } = {
   },
   '5': (model: BoardConfig) => {
     hydrateData(model, '5', 'version');
-    model.blocks
-      .find((x) => x.type === 'quotes')
-      .quotes.forEach(function (quote) {
-        quote['seen'] = false;
-      });
+    model.blocks.find((x: BlockConfig) => x.type === 'other').others.push({ seen: false });
   },
 };
 

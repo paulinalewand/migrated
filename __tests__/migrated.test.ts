@@ -1,6 +1,7 @@
 import { migrated, MigratingData } from '../src/index';
 import testBoardConfigMigration from './migrations/boardMigrationTest';
 import {
+  BlockConfig,
   BoardConfig,
   NewTest0BoardConfig,
   NewTest1BoardConfig,
@@ -81,8 +82,8 @@ describe('Testing board migration 4', () => {
       NewTest4BoardConfig,
     ) as BoardConfig;
 
-    expect(data.blocks[4].newKey).toBe(1);
-    expect(data.blocks[5].newKey).toBe(2);
-    expect(data.blocks.find((x) => x.type === 'quotes').quotes[0].seen).toBe(false);
+    expect(data.blocks[1].newKey).toBe(1);
+    expect(data.blocks[2].newKey).toBe('two');
+    expect(data.blocks.find((x: BlockConfig) => x.type === 'other').others[0].seen).toBe(false);
   });
 });

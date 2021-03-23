@@ -13,7 +13,7 @@ type JsonCompatible<T> = {
 export type MigratingData = JsonCompatible<any>;
 
 export const mergeData = (model: MigratingData, modelNew: MigratingData): void => {
-  Object.keys(model).forEach(function (key) {
+  Object.keys(model).forEach((key) => {
     if (typeof model[key] === 'object') {
       if (!(model[key] instanceof Array)) model[key] = { ...modelNew[key], ...model[key] };
       if (modelNew[key]) return mergeData(model[key], modelNew[key]);
@@ -32,18 +32,18 @@ export const runMigrationFncs = (
   model: MigratingData,
   versionFncs: { [key: string]: (model: MigratingData) => void },
 ): void => {
-  for (const key in versionFncs) {
+  Object.keys(versionFncs).forEach((key) => {
     versionFncs[key](model);
-  }
+  });
 };
 
 export const migrated = (
-  boardConfigOld: MigratingData,
+  dataOld: MigratingData,
   migrationFncs: { [key: string]: (model: MigratingData) => void },
-  boardConfigNew?: MigratingData, // OPTIONLAL new config version model, with default values set
+  dataNew?: MigratingData, // OPTIONLAL new data version model, with default values set
 ): MigratingData => {
-  const updatedConfig = { ...(boardConfigNew || {}), ...boardConfigOld };
-  if (boardConfigNew) mergeData(updatedConfig, boardConfigNew);
-  runMigrationFncs(updatedConfig, migrationFncs);
-  return updatedConfig;
+  const updatedData = { ...(dataNew || {}), ...dataOld };
+  if (dataNew) mergeData(updatedData, dataNew);
+  runMigrationFncs(updatedData, migrationFncs);
+  return updatedData;
 };

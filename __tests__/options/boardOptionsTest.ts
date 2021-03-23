@@ -1,84 +1,41 @@
 import { MigratingData } from '../../src/index';
 
+test.skip('skip', () => {});
+
 export interface BoardConfig extends MigratingData {
   version: string;
-  type: 'personal' | 'organisational' | 'relationship';
-  template: 'xyz' | 'abc' | 'def';
-  design: 'xyz' | 'abc' | 'def';
+  name: string;
 }
 
-export const BoardConfigVersion = '1';
+export interface BlockConfig {
+  type: 'image' | 'text' | 'other';
+  zoom?: number;
+  images?: [];
+  title?: string;
+  others?: [];
+}
 
 const NewBoardConfig = {
-  version: BoardConfigVersion,
-  type: 'personal',
-  design: 'abc',
-  template: 'abc',
+  version: '1',
+  name: 'TEST',
 } as BoardConfig;
 
 export const NewTest0BoardConfig = {
   ...NewBoardConfig,
   blocks: [
     {
-      type: 'images',
-      viewportTransform: [1, 0, 0, 1, 0, 0],
+      type: 'image',
       zoom: 1,
       images: [],
-      title: myVisualizationTitle,
-    } as ImagesBlockConfig,
+    } as BlockConfig,
     {
       type: 'text',
-      content: missionStatementContent,
-      title: missionStatementTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
+    } as BlockConfig,
     {
-      type: 'text',
-      content: myValuesContent,
-      title: myValuesTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      content: myYearGoalaContent,
-      title: myYearGoalsTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      content: '',
-      title: mydailyRoutineTitle,
-      textType: 'progress',
-      history: [],
-      items: mydailyRoutineItems,
-      removeDone: false,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      content: '',
-      title: todaysPrioritiesTitle,
-      textType: 'progress',
-      history: [],
-      items: todaysPrioritiesItems,
-      removeDone: true,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      content: myRelationshipVisionContent,
-      title: myRelationshipVisionTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'journal',
-      template: dailyJournalContent,
-      title: dailyJournalTitle,
-      posts: [],
-    } as JournalBlockConfig,
-    {
-      type: 'quotes',
-      quotes: dailyQuotes,
-      title: dailyJournalTitle,
-    } as QuotesBlockConfig,
+      type: 'other',
+      title: 'test',
+      others: [],
+    } as BlockConfig,
   ],
 } as BoardConfig;
 
@@ -87,65 +44,18 @@ export const NewTest1BoardConfig = {
   version: '2',
   blocks: [
     {
-      type: 'images',
-      viewportTransform: [1, 0, 0, 1, 0, 0],
+      type: 'image',
       zoom: 1,
       images: [],
-      title: myVisualizationTitle,
-    } as ImagesBlockConfig,
+    } as BlockConfig,
     {
       type: 'text',
-      content: missionStatementContent,
-      title: missionStatementTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
+    } as BlockConfig,
     {
-      type: 'text',
-      content: myValuesContent,
-      title: myValuesTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      content: myYearGoalaContent,
-      title: myYearGoalsTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      content: '',
-      title: mydailyRoutineTitle,
-      textType: 'progress',
-      history: [],
-      items: mydailyRoutineItems,
-      removeDone: false,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      content: '',
-      title: todaysPrioritiesTitle,
-      textType: 'progress',
-      history: [],
-      items: todaysPrioritiesItems,
-      removeDone: true,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      content: '',
-      title: myRelationshipVisionTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'journal',
-      template: dailyJournalContent,
-      title: dailyJournalTitle,
-      posts: [],
-    } as JournalBlockConfig,
-    {
-      type: 'quotes',
-      quotes: dailyQuotes,
-      title: dailyJournalTitle,
-    } as QuotesBlockConfig,
+      type: 'other',
+      title: 'test',
+      others: [],
+    } as BlockConfig,
   ],
 } as BoardConfig;
 
@@ -154,73 +64,19 @@ export const NewTest2BoardConfig = {
   version: '3',
   blocks: [
     {
-      type: 'images',
-      viewportTransform: [1, 0, 0, 1, 0, 0],
+      type: 'image',
       zoom: 1,
       images: [],
       focus: true,
-      title: myVisualizationTitle,
-    } as ImagesBlockConfig,
+    } as BlockConfig,
     {
       type: 'text',
-      content: missionStatementContent,
-      title: missionStatementTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
+    } as BlockConfig,
     {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myValuesContent,
-      title: myValuesTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myYearGoalaContent,
-      title: myYearGoalsTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: '',
-      title: mydailyRoutineTitle,
-      textType: 'progress',
-      history: [],
-      items: mydailyRoutineItems,
-      removeDone: false,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: '',
-      title: todaysPrioritiesTitle,
-      textType: 'progress',
-      history: [],
-      items: todaysPrioritiesItems,
-      removeDone: true,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myRelationshipVisionContent,
-      title: myRelationshipVisionTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'journal',
-      template: dailyJournalContent,
-      title: dailyJournalTitle,
-      blockId: uuid.v4(),
-      posts: [],
-    } as JournalBlockConfig,
-    {
-      type: 'quotes',
-      blockId: uuid.v4(),
-      quotes: dailyQuotes,
-      title: dailyQuotesTitle,
-    } as QuotesBlockConfig,
+      type: 'other',
+      title: 'test',
+      others: [],
+    } as BlockConfig,
   ],
 } as BoardConfig;
 
@@ -229,75 +85,19 @@ export const NewTest3BoardConfig = {
   version: '4',
   blocks: [
     {
-      type: 'images',
-      viewportTransform: [1, 0, 0, 1, 0, 0],
+      type: 'image',
       zoom: 1,
-      blockId: uuid.v4(),
       images: [],
       focus: false,
-      title: myVisualizationTitle,
-    } as ImagesBlockConfig,
+    } as BlockConfig,
     {
       type: 'text',
-      blockId: uuid.v4(),
-      content: missionStatementContent,
-      title: missionStatementTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
+    } as BlockConfig,
     {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myValuesContent,
-      title: myValuesTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myYearGoalaContent,
-      title: myYearGoalsTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: '',
-      title: mydailyRoutineTitle,
-      textType: 'progress',
-      history: [],
-      items: mydailyRoutineItems,
-      removeDone: false,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: '',
-      title: todaysPrioritiesTitle,
-      textType: 'progress',
-      history: [],
-      items: todaysPrioritiesItems,
-      removeDone: true,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myRelationshipVisionContent,
-      title: myRelationshipVisionTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'journal',
-      template: dailyJournalContent,
-      title: dailyJournalTitle,
-      blockId: uuid.v4(),
-      posts: [],
-    } as JournalBlockConfig,
-    {
-      type: 'quotes',
-      blockId: uuid.v4(),
-      quotes: dailyQuotes,
-      title: dailyQuotesTitle,
-    } as QuotesBlockConfig,
+      type: 'other',
+      title: 'test',
+      others: [],
+    } as BlockConfig,
   ],
 } as BoardConfig;
 
@@ -306,70 +106,20 @@ export const NewTest4BoardConfig = {
   version: '5',
   blocks: [
     {
-      type: 'images',
-      viewportTransform: [1, 0, 0, 1, 0, 0],
+      type: 'image',
       zoom: 1,
-      blockId: uuid.v4(),
       images: [],
       focus: false,
-      title: myVisualizationTitle,
-    } as ImagesBlockConfig,
+    } as BlockConfig,
     {
       type: 'text',
-      blockId: uuid.v4(),
-      content: missionStatementContent,
-      title: missionStatementTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      blockId: uuid.v4(),
-      content: myValuesContent,
-      title: myValuesTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      content: myYearGoalaContent,
-      title: myYearGoalsTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'text',
-      content: '',
-      title: mydailyRoutineTitle,
-      textType: 'progress',
-      history: [],
-      items: mydailyRoutineItems,
-      removeDone: false,
       newKey: 1,
-    } as CheckboxBlockConfig,
+    } as BlockConfig,
     {
-      type: 'text',
-      content: '',
-      title: todaysPrioritiesTitle,
-      textType: 'progress',
-      history: [],
-      items: todaysPrioritiesItems,
-      removeDone: true,
-      newKey: 2,
-    } as CheckboxBlockConfig,
-    {
-      type: 'text',
-      content: myRelationshipVisionContent,
-      title: mydailyRoutineTitle,
-      textType: 'normal',
-    } as TextBlockConfig,
-    {
-      type: 'journal',
-      template: dailyJournalContent,
-      title: dailyJournalTitle,
-      posts: [],
-    } as JournalBlockConfig,
-    {
-      type: 'quotes',
-      quotes: dailyQuotes,
-      title: dailyQuotesTitle,
-    } as QuotesBlockConfig,
+      type: 'other',
+      title: 'test',
+      newKey: 'two',
+      others: [],
+    } as BlockConfig,
   ],
 } as BoardConfig;
