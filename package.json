@@ -1,6 +1,6 @@
 {
   "name": "migrated",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple way to migrate objects.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,13 +12,15 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
-  "keywords": ["migrated"],
+  "keywords": [
+    "migrated"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/paulinalewand/migrated"
