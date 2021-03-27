@@ -12,6 +12,8 @@ type JsonCompatible<T> = {
 
 export type MigratingData = JsonCompatible<any>;
 
+export type MigratingFnsc = { [key: string]: (model: MigratingData) => void };
+
 export const mergeData = (model: MigratingData, modelNew: MigratingData): void => {
   Object.keys(model).forEach((key) => {
     if (typeof model[key] === 'object') {
@@ -28,22 +30,44 @@ export const hydrateData = (model: MigratingData, newValue: any, ...keys: string
   if (model) model[keys[keys.length - 1]] = newValue;
 };
 
-export const runMigrationFncs = (
-  model: MigratingData,
-  versionFncs: { [key: string]: (model: MigratingData) => void },
-): void => {
+export const runMigrationFncs = (model: MigratingData, versionFncs: MigratingFnsc): void => {
   Object.keys(versionFncs).forEach((key) => {
     versionFncs[key](model);
   });
 };
 
 export const migrated = (
-  dataOld: MigratingData,
-  migrationFncs: { [key: string]: (model: MigratingData) => void },
+  dataOld: MigratingData, // object that we want to migrate
+  migrationFncs: MigratingFnsc, // can mutate config object, but NOT reassign a new value
   dataNew?: MigratingData, // OPTIONLAL new data version model, with default values set
 ): MigratingData => {
   const updatedData = { ...(dataNew || {}), ...dataOld };
   if (dataNew) mergeData(updatedData, dataNew);
   runMigrationFncs(updatedData, migrationFncs);
+  return updatedData;
+};
+
+// ALTERNATIVE solution
+
+export type MigratingDataAlt = {
+  data: JsonCompatible<any>;
+  migrations: MigratingFnsc;
+  appliedMigrations: MigratingFnsc;
+};
+
+export const runMigrationFncsAlt = (model: MigratingDataAlt): void => {
+  Object.keys(model.migrations).forEach((key) => {
+    if (!(key in model.appliedMigrations)) {
+      model.migrations[key](model.data);
+      model.appliedMigrations.push(model.migrations[key]);
+    }
+  });
+};
+
+export const migratedAlt = (
+  dataOld: MigratingDataAlt, // object that we want to migrate, with migrationFncs, and already applied migrations
+): MigratingData => {
+  const updatedData = { ...dataOld };
+  runMigrationFncsAlt(updatedData);
   return updatedData;
 };

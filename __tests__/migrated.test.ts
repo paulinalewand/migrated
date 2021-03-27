@@ -1,4 +1,4 @@
-import { migrated, MigratingData } from '../src/index';
+import { migrated, MigratingFnsc } from '../src/index';
 import testBoardConfigMigration from './migrations/boardMigrationTest';
 import {
   BlockConfig,
@@ -13,13 +13,7 @@ import {
 describe('Testing board migration 1', () => {
   it('correctly updates config for specific board version', () => {
     let data = { ...NewTest0BoardConfig };
-    data = migrated(
-      data,
-      testBoardConfigMigration.migrations1 as {
-        [key: string]: (model: MigratingData) => void;
-      },
-      NewTest1BoardConfig,
-    ) as BoardConfig;
+    data = migrated(data, testBoardConfigMigration.migrations1 as MigratingFnsc, NewTest1BoardConfig) as BoardConfig;
 
     // expect(data.version).toMatchObject(NewTest1BoardConfig);
     expect(data.version).toBe(NewTest1BoardConfig.version);
@@ -29,13 +23,7 @@ describe('Testing board migration 1', () => {
 describe('Testing board migration 2', () => {
   it('correctly updates config for specific board version', () => {
     let data = { ...NewTest0BoardConfig };
-    data = migrated(
-      data,
-      testBoardConfigMigration.migrations2 as {
-        [key: string]: (model: MigratingData) => void;
-      },
-      NewTest2BoardConfig,
-    ) as BoardConfig;
+    data = migrated(data, testBoardConfigMigration.migrations2 as MigratingFnsc, NewTest2BoardConfig) as BoardConfig;
 
     expect(data.blocks[0]).toHaveProperty('focus');
   });
@@ -44,13 +32,7 @@ describe('Testing board migration 2', () => {
 describe('Testing board migration 3', () => {
   it('correctly updates config for specific board version', () => {
     let data = { ...NewTest0BoardConfig };
-    data = migrated(
-      data,
-      testBoardConfigMigration.migrations3 as {
-        [key: string]: (model: MigratingData) => void;
-      },
-      NewTest3BoardConfig,
-    ) as BoardConfig;
+    data = migrated(data, testBoardConfigMigration.migrations3 as MigratingFnsc, NewTest3BoardConfig) as BoardConfig;
 
     expect(data.blocks[0].focus).toBe(false);
   });
@@ -59,13 +41,7 @@ describe('Testing board migration 3', () => {
 describe('Testing board migration 3', () => {
   it('correctly updates config for specific board version', () => {
     let data = { ...NewTest2BoardConfig };
-    data = migrated(
-      data,
-      testBoardConfigMigration.migrations3 as {
-        [key: string]: (model: MigratingData) => void;
-      },
-      NewTest3BoardConfig,
-    ) as BoardConfig;
+    data = migrated(data, testBoardConfigMigration.migrations3 as MigratingFnsc, NewTest3BoardConfig) as BoardConfig;
 
     expect(data.blocks[0].focus).toBe(false);
   });
@@ -74,13 +50,7 @@ describe('Testing board migration 3', () => {
 describe('Testing board migration 4', () => {
   it('correctly updates config for specific board version', () => {
     let data = { ...NewTest3BoardConfig };
-    data = migrated(
-      data,
-      testBoardConfigMigration.migrations4 as {
-        [key: string]: (model: MigratingData) => void;
-      },
-      NewTest4BoardConfig,
-    ) as BoardConfig;
+    data = migrated(data, testBoardConfigMigration.migrations4 as MigratingFnsc, NewTest4BoardConfig) as BoardConfig;
 
     expect(data.blocks[1].newKey).toBe(1);
     expect(data.blocks[2].newKey).toBe('two');
