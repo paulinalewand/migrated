@@ -16,7 +16,7 @@ import { migrated, MigratingData, MigratingFnsc } from 'migrated';
 const migratedObject = migrated(
   dataOld as MigratingData, // object that we want to migrate
   migrationFncs as MigratingFnsc, // functions can mutate object, but NOT reassign a new value
-  dataNew as MigratingData, // OPTIONLAL new data version model, with default values set
+  dataNew as MigratingData, // OPTIONAL new data version model, with default values set
 );
 ```
 
