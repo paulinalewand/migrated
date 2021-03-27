@@ -38,7 +38,7 @@ export const runMigrationFncs = (model: MigratingData, versionFncs: MigratingFns
 
 export const migrated = (
   dataOld: MigratingData, // object that we want to migrate
-  migrationFncs: MigratingFnsc, // can mutate config object, but NOT reassign a new value
+  migrationFncs: MigratingFnsc, // functions can mutate object, but NOT reassign a new value
   dataNew?: MigratingData, // OPTIONLAL new data version model, with default values set
 ): MigratingData => {
   const updatedData = { ...(dataNew || {}), ...dataOld };
