@@ -1,6 +1,6 @@
 {
   "name": "migrated",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple way to migrate objects.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
