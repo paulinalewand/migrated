@@ -23,15 +23,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/paulinalewand/migrated"
+    "url": "https://github.com/paulinalewando/migrated"
   },
   "author": {
     "name": "Paulina",
-    "url": "https://github.com/paulinalewand"
+    "url": "https://github.com/paulinalewando"
   },
-  "homepage": "https://github.com/paulinalewand#readme",
+  "homepage": "https://github.com/paulinalewando#readme",
   "bugs": {
-    "url": "https://github.com/paulinalewand/issues"
+    "url": "https://github.com/paulinalewando/issues"
   },
   "license": "MIT",
   "devDependencies": {
