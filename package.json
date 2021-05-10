@@ -29,9 +29,9 @@
     "name": "Paulina",
     "url": "https://github.com/paulinalewando"
   },
-  "homepage": "https://github.com/paulinalewando#readme",
+  "homepage": "https://github.com/paulinalewando/migrated#readme",
   "bugs": {
-    "url": "https://github.com/paulinalewando/issues"
+    "url": "https://github.com/paulinalewando/migrated/issues"
   },
   "license": "MIT",
   "devDependencies": {
